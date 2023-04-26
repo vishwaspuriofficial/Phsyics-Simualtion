@@ -14,11 +14,6 @@ var SimulationArea = {
 function Vector(x, y) {
   this.x = x;
   this.y = y;
-
-  this.add = function(x2, y2) {
-    this.x = this.x + x2;
-    this.y = this.y + y2;
-  }
 }
 
 function RigidBody(width, height, position, velocity, acceleration) {
@@ -27,19 +22,18 @@ function RigidBody(width, height, position, velocity, acceleration) {
   this.position = new Vector(...position);
   this.velocity = new Vector(...velocity);
   this.acceleration = new Vector(...acceleration);
-  
-  this.update = function() {
-    this.ctx = SimulationArea.context;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    this.position.add(this.velocity.x, this.velocity.y)
-  }
+}
+
+function update(body) {
+  body.ctx = SimulationArea.context;
+  ctx.fillRect(body.position.x, body.position.y, body.width, body.height);
+  body.position.x += body.velocity.x
+  body.position.y += body.velocity.y
 }
 
 SimulationArea.start();
 var ctx = SimulationArea.context;
 
 bodies = [];
-bodies.push(new RigidBody(100, 10, [10, 20], [0, 0], [0, 0]));
-setInterval(bodies[0].update, SimulationArea.delay);
-
-
+bodies.push(new RigidBody(100, 10, [100, 20], [10, 10], [0, 0]));
+setInterval(() => {update(bodies[0]);}, SimulationArea.delay);
