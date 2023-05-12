@@ -1,7 +1,7 @@
 var SimulationArea = {
   canvas: document.getElementById("myCanvas"),
   start: function() {
-    this.delay = 1000;
+    this.delay = 0.01;
     this.context = this.canvas.getContext("2d");
   },
   clear: function() {
@@ -29,7 +29,7 @@ class RigidBody {
 
   update() {
     this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    this.position.add(this.velocity.x, this.velocity.y)
+    this.position.add(this.velocity.x*SimulationArea.delay, this.velocity.y*SimulationArea.delay)
   }
 }
 
@@ -40,4 +40,4 @@ bodies.push(new RigidBody(100, 10, [100, 20], [10, 10], [0, 0]));
 setInterval(function () {
   SimulationArea.clear();
   bodies[0].update();
-}, 1000);
+}, SimulationArea.delay*1000);
