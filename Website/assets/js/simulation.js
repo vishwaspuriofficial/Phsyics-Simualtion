@@ -1,43 +1,32 @@
-var SimulationArea = {
-  canvas: document.getElementById("myCanvas"),
-  start: function() {
-    this.delay = 0.01;
-    this.context = this.canvas.getContext("2d");
-  },
-  clear: function() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-}
+// module aliases
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    Runner = Matter.Runner,
+    Bodies = Matter.Bodies,
+    Composite = Matter.Composite;
 
-function Vector(x, y) {
-  this.x = x;
-  this.y = y;
-  this.add = function(x2, y2) {
-    this.x = this.x + x2;
-    this.y = this.y + y2;
-  }
-}
+// create an engine
+var engine = Engine.create();
 
-class RigidBody {
-  constructor(width, height, position, velocity, acceleration) {
-  this.width = width;
-  this.height = height;
-  this.position = new Vector(...position);
-  this.velocity = new Vector(...velocity);
-  this.acceleration = new Vector(...acceleration); 
-  this.ctx = SimulationArea.context;}
+// create a renderer
+var render = Render.create({
+    element: document.body,
+    engine: engine
+});
 
-  update() {
-    this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    this.position.add(this.velocity.x*SimulationArea.delay, this.velocity.y*SimulationArea.delay)
-  }
-}
+// create two boxes and a ground
+var boxA = Bodies.rectangle(400, 200, 80, 80);
+var boxB = Bodies.rectangle(450, 50, 80, 80);
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 
-SimulationArea.start();
+// add all of the bodies to the world
+Composite.add(engine.world, [boxA, boxB, ground]);
 
-bodies = [];
-bodies.push(new RigidBody(100, 10, [100, 20], [10, 10], [0, 0]));
-setInterval(function () {
-  SimulationArea.clear();
-  bodies[0].update();
-}, SimulationArea.delay*1000);
+// run the renderer
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
+
+// run the engine
+Runner.run(runner, engine);
