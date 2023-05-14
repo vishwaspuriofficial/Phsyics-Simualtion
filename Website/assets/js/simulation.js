@@ -1,3 +1,7 @@
+// set canvas
+var canvas = document.getElementById("simulation"),
+    context = canvas.getContext("2d");
+
 // module aliases
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -10,11 +14,12 @@ var engine = Engine.create();
 
 // create a renderer
 var render = Render.create({
-    element: document.body,
-    engine: engine
+    canvas: canvas,
+    engine: engine,
 });
+render.options.wireframes = false;
 
-// create two boxes and a ground
+// create two boxes and a 4ground
 var boxA = Bodies.rectangle(400, 200, 80, 80);
 var boxB = Bodies.rectangle(450, 50, 80, 80);
 var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
