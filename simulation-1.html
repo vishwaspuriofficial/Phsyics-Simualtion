@@ -14,7 +14,7 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,1000,1000i|Raleway:300,300i,400,400i,500,500i,600,600i,1000,1000i|Poppins:300,300i,400,400i,500,500i,600,600i,1000,1000i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -38,6 +38,9 @@
 </head>
 
 <body>
+  <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
@@ -94,12 +97,34 @@
           Example inner page template
         </p>
         
-        <canvas id="simulation" style="width: 1000px; height: auto"></canvas>
+        <canvas id="simulation" style="width:100%;max-width:1400px;max-height:700px"></canvas>
         <script src="assets/js/matter.js"></script>
         <script src="assets/js/simulation.js"></script>
 
       </div>
     </section>
+
+    <section id="graphs">
+      <div class="container">
+    <h3 style= "margin-left: 10px;">X-Position-Time Graph</h3>
+    <canvas id="xptGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+
+    <h3 style= "margin-left: 10px;">Y-Position-Time Graph</h3>
+    <canvas id="yptGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+
+    <h3 style= "margin-left: 10px;">X-Velocity-Time Graph</h3>
+    <canvas id="xvtGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+
+    <h3 style= "margin-left: 10px;">Y-Velocity-Time Graph</h3>
+    <canvas id="yvtGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+
+    <h3 style= "margin-left: 10px;">X-Acceleration-Time Graph</h3>
+    <canvas id="xatGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+
+    <h3 style= "margin-left: 10px;">Y-Acceleration-Time Graph</h3>
+    <canvas id="yatGraph" style="width:100%;max-width:1000px;max-height:700px"></canvas>
+  </div>
+  </section>
 
   </main><!-- End #main -->
 
