@@ -96,7 +96,7 @@
       <div class="container">
         <div class="row">
           <div class="col-8">
-            <canvas id="simulation" style="width:100%;max-width:900px;max-height:500px"></canvas>
+            <canvas id="simulation" style="width:100%;max-width:800px;max-height:600px"></canvas>
           </div>
           <div class="col-4">
             <div class="col">
@@ -152,7 +152,14 @@
           </div>
           <div class="w-100"></div>
           <div class="col">
-            <button onclick="startSimulation()" type="button" class="btn btn-secondary btn-lg">Start Simulation</button>
+            <div class="row">
+              <div style="max-width: 250px;" class="col-sm-4">
+                <button onclick="startSimulation()" type="button" class="btn btn-secondary btn-lg">Start Simulation</button>
+              </div>
+              <div style="max-width: 250px;" class="col-sm-4">.col-sm-4</div>
+              <div style="max-width: 250px;" class="col-sm-4">.col-sm-4</div>
+            </div>
+            
             <div class="dropdown">
               <button type="button" id="addObject" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown">
                 Add Object
