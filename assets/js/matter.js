@@ -1680,7 +1680,14 @@ var Axes = __webpack_require__(11);
             mass: 0,
             inertia: 0,
             deltaTime: 1000 / 60,
-            _original: null
+            _original: null,
+            positionX: [],
+            positionY: [],
+            velocityX: [],
+            velocityY: [],
+            accelerationX: [],
+            accelerationY: [],
+            time: [0]
         };
 
         var body = Common.extend(defaults, options);
@@ -2363,6 +2370,13 @@ var Axes = __webpack_require__(11);
             }
 
             Bounds.update(part.bounds, part.vertices, body.velocity);
+            body.positionX.push(body.position.x);
+            body.positionY.push(600-body.position.y);
+            body.velocityX.push(body.velocity.x);
+            body.velocityY.push(0-body.velocity.y);
+            body.accelerationX.push((body.velocityX.at(-1)-body.velocityX.at(-2))/(deltaTime/1000));
+            body.accelerationY.push(0-(body.velocityY.at(-1)-body.velocityY.at(-2))/(deltaTime/1000));
+            body.time.push(Math.round((deltaTime+body.time.at(-1))));
         }
     };
 
@@ -6324,8 +6338,8 @@ var Body = __webpack_require__(4);
             plugin: {},
             gravity: {
                 x: 0,
-                y: 1,
-                scale: 0.001
+                y: 9.8,
+                scale: 0.0001
             },
             timing: {
                 timestamp: 0,
