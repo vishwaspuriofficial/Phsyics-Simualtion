@@ -44,10 +44,13 @@ render.mouse = mouse;
 // var boxA = Bodies.rectangle(400, 200, 80, 80);
 // var boxB = Bodies.rectangle(400, 50, 80, 80);
 // var boxC = Bodies.rectangle(400, 100, 80, 80);
-var ground = Bodies.rectangle(400, 800, 800, 600, { isStatic: true });
-
+var border = []
+border.push(Bodies.rectangle(400, 650, 1000, 100, { isStatic: true }));
+border.push(Bodies.rectangle(400, -50, 1000, 100, { isStatic: true }));
+border.push(Bodies.rectangle(-50, 300, 100, 600, { isStatic: true }));
+border.push(Bodies.rectangle(850, 300, 100, 600, { isStatic: true }));
 // add ground the world
-Composite.add(engine.world, [ground]);
+Composite.add(engine.world, border);
 
 // run the renderer
 Render.run(render);
@@ -78,7 +81,7 @@ function clearObjects() {
 }
 
 function createObject() {
-    var box = Bodies.rectangle(200,200,document.getElementById("length").value,document.getElementById("width").value, {render: {
+    var box = Bodies.rectangle(400,200,document.getElementById("length").value,document.getElementById("width").value, {render: {
         fillStyle: colours.at(objects.length),
         strokeStyle: 'white',
         lineWidth: 3}, isStatic: true})
