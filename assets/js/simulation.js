@@ -8,6 +8,9 @@ var Engine = Matter.Engine,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
     Composite = Matter.Composite;
+    MouseConstraint = Matter.MouseConstraint,
+    Mouse = Matter.Mouse,
+    Composite = Matter.Composite;
 
 // create an engine
 var engine = Engine.create();
@@ -19,36 +22,72 @@ var render = Render.create({
 });
 render.options.wireframes = false;
 
+
+//mouse controls
+var mouse = Mouse.create(render.canvas),
+mouseConstraint = MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: {
+        stiffness: 0.2,
+        render: {
+            visible: false
+        }
+    }
+});
+
+Composite.add(engine.world, mouseConstraint);
+// keep the mouse in sync with rendering
+render.mouse = mouse;
+
 // createboxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80);
-var boxB = Bodies.rectangle(400, 50, 80, 80);
-var boxC = Bodies.rectangle(400, 100, 80, 80);
-var ground = Bodies.rectangle(400, 600, 800, 60, { isStatic: true });
-
-// add all of the bodies to the world
-Composite.add(engine.world, [boxA, boxB, boxC, ground]);
-
-// run the renderer
-Render.run(render);
-
-// create runner
-var runner = Runner.create();
-
-// run the engine
-Runner.run(runner, engine);
+// var boxA = Bodies.rectangle(400, 200, 80, 80);
+// var boxB = Bodies.rectangle(400, 50, 80, 80);
+// var boxC = Bodies.rectangle(400, 100, 80, 80);
+var ground = Bodies.rectangle(400, 800, 800, 600, { isStatic: true });
 
 //Dynamic Frame Per Second
-fps = 1000
+fps = 1
 objects = []
 vals = []
 letters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+colours = ["red", "orange", "yellow", "green", "blue", "purple"]
+
+
+function startSimulation() {
+    objects.forEach(function(object) {
+        Matter.Body.setStatic(object, false)
+    });
+}
+
+function displayObjects() { 
+    // add all of the bodies to the world
+    Composite.add(engine.world, [...objects,ground]);
+    // run the renderer
+    Render.run(render);
+
+    // create runner
+    var runner = Runner.create();
+
+    // run the engine
+    Runner.run(runner, engine);
+}
+
+function clearObjects() {
+    location.reload()
+}
+
 function createObject() {
-    var box = Bodies.rectangle(200,200,document.getElementById("length").value,document.getElementById("width").value)
+    var box = Bodies.rectangle(200,200,document.getElementById("length").value,document.getElementById("width").value, {render: {
+        fillStyle: colours.at(objects.length),
+        strokeStyle: 'white',
+        lineWidth: 3}, isStatic: true })
     box.mass = document.getElementById("mass").value
     objects.push(box)
-    console.log(objects)
+    displayObjects()
     dynamicOptions()
 }
+
+
 
 function dynamicOptions() {
     var options = "";
@@ -100,6 +139,7 @@ function showObjects(graph) {
     }
 }
 
+
 function createGraph(selectedObject, graph) {
     document.getElementById("xpt").hidden = true;
     document.getElementById("ypt").hidden = true;
@@ -149,6 +189,19 @@ function selectObject(obj) {
     createGraph(obj, document.getElementById("graph").innerText.slice(-3))
 }
 
+// document.getElementById("simulation").onclick = function(e) {
+//     console.log(e.offsetX,e.offsetY)
+//     objects.at(-1).x = e.offsetX
+//     objects.at(-1).y = e.offsetY
+//     if (count==0) {
+//         const img = new Image(50, 50);
+//         img.id = "A";
+//         img.src = "A.png"; 
+//         ay = e.offsetY-50
+//         ax = e.offsetX-25
+//         img.style=`position: absolute; top:${ay}px; left:${ax}px`;
+//         document.body.appendChild(img);
+//     }
 
 
 // positionX = [boxA.position.x];
