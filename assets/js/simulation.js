@@ -56,9 +56,10 @@ colours = ["red", "orange", "yellow", "green", "blue", "purple"]
 function startSimulation() {
     objects.forEach(function(object) {
         Matter.Body.setStatic(object, false)
+        simulationData()
     });
 }
-
+displayObjects()
 function displayObjects() { 
     // add all of the bodies to the world
     Composite.add(engine.world, [...objects,ground]);
@@ -83,50 +84,56 @@ function createObject() {
         lineWidth: 3}, isStatic: true })
     box.mass = document.getElementById("mass").value
     objects.push(box)
+    if (objects.length==6) {
+        document.getElementById("addObject").disabled = true;
+        document.getElementById("ao").remove()
+    }
     displayObjects()
     dynamicOptions()
 }
 
-
-
 function dynamicOptions() {
     var options = "";
     var x = 0;
+    
     objects.forEach(function(object){
         x++
-        options += `<li><a onclick="selectObject('${letters.at(x)}')" class="dropdown-item">Object ${letters.at(x)}</a></li>`;
+        var colour =  colours.at(x-1).charAt(0).toUpperCase() + colours.at(x-1).slice(1)
+        options += `<li><a onclick="selectObject('${colour}')" class="dropdown-item">Object ${colour}</a></li>`;
     });
  document.getElementById("dynamicObjects").innerHTML = options;
 }
 
-objects.forEach(function(object){
-    console.log(object)
-    Object.assign(object,{positionX: [object.position.x]});
-    Object.assign(object,{positionY: [object.position.y]});
-    Object.assign(object,{velocityX: [object.velocity.x]});
-    Object.assign(object,{velocityY: [object.velocity.x]});
-    Object.assign(object,{accelerationX: []});
-    Object.assign(object,{accelerationY: []});
-    Object.assign(object,{time: [0]});
+function simulationData() {
+    objects.forEach(function(object){
+        console.log(object)
+        Object.assign(object,{positionX: [object.position.x]});
+        Object.assign(object,{positionY: [object.position.y]});
+        Object.assign(object,{velocityX: [object.velocity.x]});
+        Object.assign(object,{velocityY: [object.velocity.x]});
+        Object.assign(object,{accelerationX: []});
+        Object.assign(object,{accelerationY: []});
+        Object.assign(object,{time: [0]});
 
-    Math.round((object.positionX.at(-1)) * 100) / 100
+        Math.round((object.positionX.at(-1)) * 100) / 100
 
-    var timer = setInterval(() => {
-        console.log(object.positionY.at(-1), object.position.y);
-        if (((Math.round((object.positionX.at(-1)) * 100) / 100) == (Math.round((object.position.x) * 100) / 100)) && ((Math.round((object.positionY.at(-1)) * 100) / 100) == (Math.round((object.position.y) * 100) / 100))) {
-            vals.push(object)
-            clearInterval(timer); 
-            console.log(vals);
-        }
-        object.positionX.push(object.position.x);
-        object.positionY.push(object.position.y);
-        object.velocityX.push(object.velocity.x);
-        object.velocityY.push(object.velocity.y);
-        object.accelerationX.push((object.velocityX.at(-1)-object.velocityX.at(-2))/(fps/1000));
-        object.accelerationY.push((object.velocityY.at(-1)-object.velocityY.at(-2))/(fps/1000));
-        object.time.push(Math.round((object.time.at(-1)+0.1) * 10) / 10);
-    }, fps)
-});
+        var timer = setInterval(() => {
+            console.log(object.positionY.at(-1), object.position.y);
+            if (((Math.round((object.positionX.at(-1)) * 100) / 100) == (Math.round((object.position.x) * 100) / 100)) && ((Math.round((object.positionY.at(-1)) * 100) / 100) == (Math.round((object.position.y) * 100) / 100))) {
+                vals.push(object)
+                clearInterval(timer); 
+                console.log(vals);
+            }
+            object.positionX.push(object.position.x);
+            object.positionY.push(object.position.y);
+            object.velocityX.push(object.velocity.x);
+            object.velocityY.push(object.velocity.y);
+            object.accelerationX.push((object.velocityX.at(-1)-object.velocityX.at(-2))/(fps/1000));
+            object.accelerationY.push((object.velocityY.at(-1)-object.velocityY.at(-2))/(fps/1000));
+            object.time.push(Math.round((object.time.at(-1)+0.1) * 10) / 10);
+        }, fps)
+    });
+}
 
 function showObjects(graph) {
     document.getElementById("graph").innerHTML = "Choose Graph: " + graph;
@@ -139,7 +146,6 @@ function showObjects(graph) {
     }
 }
 
-
 function createGraph(selectedObject, graph) {
     document.getElementById("xpt").hidden = true;
     document.getElementById("ypt").hidden = true;
@@ -148,7 +154,8 @@ function createGraph(selectedObject, graph) {
     document.getElementById("xat").hidden = true;
     document.getElementById("yat").hidden = true;
     document.getElementById(graph).hidden = false;
-    object = objects[selectedObject];
+    object = objects.at(objects.indexOf(selectedObject));
+    // console.log(objects[-1],objects.indexOf(selectedObject), selectedObject)
     if (graph=="xpt") {
         drawGraph(object, object.positionX, "xptGraph")
     }
