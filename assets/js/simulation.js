@@ -23,7 +23,6 @@ var render = Render.create({
 render.options.wireframes = false;
 render.options.showVelocity = true;
 
-
 //mouse controls
 var mouse = Mouse.create(render.canvas),
 mouseConstraint = MouseConstraint.create(engine, {
@@ -44,11 +43,13 @@ render.mouse = mouse;
 // var boxA = Bodies.rectangle(400, 200, 80, 80);
 // var boxB = Bodies.rectangle(400, 50, 80, 80);
 // var boxC = Bodies.rectangle(400, 100, 80, 80);
-var border = []
-border.push(Bodies.rectangle(400, 650, 1000, 100, { isStatic: true }));
-border.push(Bodies.rectangle(400, -50, 1000, 100, { isStatic: true }));
-border.push(Bodies.rectangle(-50, 300, 100, 600, { isStatic: true }));
-border.push(Bodies.rectangle(850, 300, 100, 600, { isStatic: true }));
+var border = [],
+    thickness = 10000 
+
+border.push(Bodies.rectangle(400, 600 + thickness/2, 800 + thickness, thickness, { isStatic: true }));
+border.push(Bodies.rectangle(400, - thickness/2, 800 + thickness, thickness, { isStatic: true }));
+border.push(Bodies.rectangle(-thickness/2, 300, thickness, 600 + thickness, { isStatic: true }));
+border.push(Bodies.rectangle(800 + thickness/2, 300, thickness, 600 + thickness, { isStatic: true }));
 // add ground the world
 Composite.add(engine.world, border);
 
