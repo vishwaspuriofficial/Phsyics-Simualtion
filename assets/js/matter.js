@@ -9683,11 +9683,11 @@ var Mouse = __webpack_require__(14);
             var velocity = Body.getVelocity(body);
 
             c.moveTo(body.position.x, body.position.y);
-            c.lineTo(body.position.x + velocity.x, body.position.y + velocity.y);
+            c.lineTo(body.position.x + velocity.x*10, body.position.y + velocity.y*10);
         }
 
-        c.lineWidth = 3;
-        c.strokeStyle = 'cornflowerblue';
+        c.lineWidth = 5;
+        c.strokeStyle = 'white';
         c.stroke();
     };
 

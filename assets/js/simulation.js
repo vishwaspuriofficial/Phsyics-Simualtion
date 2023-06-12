@@ -21,6 +21,7 @@ var render = Render.create({
     engine: engine,
 });
 render.options.wireframes = false;
+render.options.showVelocity = true;
 
 
 //mouse controls
@@ -45,6 +46,18 @@ render.mouse = mouse;
 // var boxC = Bodies.rectangle(400, 100, 80, 80);
 var ground = Bodies.rectangle(400, 800, 800, 600, { isStatic: true });
 
+// add ground the world
+Composite.add(engine.world, [ground]);
+
+// run the renderer
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
+
+// run the engine
+Runner.run(runner, engine);
+
 //Dynamic Frame Per Second
 fps = 1
 objects = []
@@ -59,19 +72,6 @@ function startSimulation() {
     });
 }
 
-function displayObjects() { 
-    // add all of the bodies to the world
-    Composite.add(engine.world, [...objects,ground]);
-    // run the renderer
-    Render.run(render);
-
-    // create runner
-    var runner = Runner.create();
-
-    // run the engine
-    Runner.run(runner, engine);
-}
-
 function clearObjects() {
     location.reload()
 }
@@ -80,10 +80,10 @@ function createObject() {
     var box = Bodies.rectangle(200,200,document.getElementById("length").value,document.getElementById("width").value, {render: {
         fillStyle: colours.at(objects.length),
         strokeStyle: 'white',
-        lineWidth: 3}, isStatic: true })
+        lineWidth: 3}, isStatic: true})
     box.mass = document.getElementById("mass").value
     objects.push(box)
-    displayObjects()
+    Composite.add(engine.world, [objects.at(-1)]);
     dynamicOptions()
 }
 
