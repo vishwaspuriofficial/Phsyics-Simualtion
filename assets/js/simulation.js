@@ -78,7 +78,6 @@ function startSimulation() {
             Matter.Sleeping.set(object, false)
             Matter.Body.setStatic(object, false)
         }
-        // simulationData()
     });
 }
 
@@ -171,35 +170,51 @@ function createGraph(selectedObject, graph) {
     document.getElementById(graph).hidden = false;
     object = objects.at(colours.indexOf(selectedObject));
     if (graph=="xpt") {
-        drawGraph(object, object.positionX, "xptGraph")
+        drawGraph(object, object.positionX, "xptGraph",'X-Position (cm)')
     }
     else if (graph=="ypt") {
-        drawGraph(object, object.positionY, "yptGraph")
+        drawGraph(object, object.positionY, "yptGraph",'Y-Position (cm)')
     }
     else if (graph=="xvt") {
-        drawGraph(object, object.velocityX, "xvtGraph")
+        drawGraph(object, object.velocityX, "xvtGraph",'X-Velocity (cm/ms)')
     }
     else if (graph=="yvt") {
-        drawGraph(object, object.velocityY, "yvtGraph")
+        drawGraph(object, object.velocityY, "yvtGraph",'Y-Velocity (cm/ms)')
     }
     else if (graph=="xat") {
-        drawGraph(object, object.accelerationX,"xatGraph")
+        drawGraph(object, object.accelerationX,"xatGraph",'X-Acceleration (cm/ms^2)')
     }
     else if (graph=="yat") {
-        drawGraph(object, object.accelerationY,"yatGraph")
+        drawGraph(object, object.accelerationY,"yatGraph",'Y-Acceleration (cm/ms^2)')
     }
 }
 
-function drawGraph(object,data,gt) {
+function drawGraph(object,data,gt,title) {
     new Chart(gt, {
         type: "line",
         data: {
             labels: object.time,
             datasets: [{
-                data: data
+                data: data,
+                label: "Movement of Object "+ selectedObject,
             }]
         },
-        options: {}
+        options: {
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time (ms)'
+                }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: title
+                }
+              }]
+            }     
+          }
       });
 }
 
