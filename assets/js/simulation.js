@@ -73,7 +73,7 @@ colours = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"]
 function startSimulation() {
     objects.forEach(function(object) {
         Matter.Body.setStatic(object, false)
-        // simulationData()
+        updateGraph();
     });
 }
 
@@ -163,35 +163,51 @@ function createGraph(selectedObject, graph) {
     document.getElementById(graph).hidden = false;
     object = objects.at(colours.indexOf(selectedObject));
     if (graph=="xpt") {
-        drawGraph(object, object.positionX, "xptGraph")
+        drawGraph(object, object.positionX, "xptGraph",'X-Position (cm)')
     }
     else if (graph=="ypt") {
-        drawGraph(object, object.positionY, "yptGraph")
+        drawGraph(object, object.positionY, "yptGraph",'Y-Position (cm)')
     }
     else if (graph=="xvt") {
-        drawGraph(object, object.velocityX, "xvtGraph")
+        drawGraph(object, object.velocityX, "xvtGraph",'X-Velocity (cm/ms)')
     }
     else if (graph=="yvt") {
-        drawGraph(object, object.velocityY, "yvtGraph")
+        drawGraph(object, object.velocityY, "yvtGraph",'Y-Velocity (cm/ms)')
     }
     else if (graph=="xat") {
-        drawGraph(object, object.accelerationX,"xatGraph")
+        drawGraph(object, object.accelerationX,"xatGraph",'X-Acceleration (cm/ms^2)')
     }
     else if (graph=="yat") {
-        drawGraph(object, object.accelerationY,"yatGraph")
+        drawGraph(object, object.accelerationY,"yatGraph",'Y-Acceleration (cm/ms^2)')
     }
 }
 
-function drawGraph(object,data,gt) {
+function drawGraph(object,data,gt,title) {
     new Chart(gt, {
         type: "line",
         data: {
             labels: object.time.slice(-100),
             datasets: [{
+                label: "Movement of Object "+ selectedObject,
                 data: data.slice(-100)
             }]
         },
-        options: {}
+        options: {
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time (ms)'
+                }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: title
+                }
+              }]
+            }     
+          }
       });
 }
 
@@ -203,9 +219,13 @@ function selectObject(obj) {
 }
 
 //Update Graphs
-canvas.onmouseup = function(e){
+function updateGraph() {
     if (selectedObject!="") {
         console.log("change")
         createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
     }
+}
+
+canvas.onmouseup = function(e){
+    updateGraph();
 }
