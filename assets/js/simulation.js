@@ -186,9 +186,9 @@ function drawGraph(object,data,gt) {
     new Chart(gt, {
         type: "line",
         data: {
-            labels: object.time,
+            labels: object.time.slice(-100),
             datasets: [{
-                data: data
+                data: data.slice(-100)
             }]
         },
         options: {}
@@ -200,4 +200,12 @@ function selectObject(obj) {
     selectedObject = obj
     document.getElementById("obj").innerHTML = "Choose Object: " + obj;
     createGraph(obj, document.getElementById("graph").innerText.slice(-3))
+}
+
+//Update Graphs
+canvas.onmouseup = function(e){
+    if (selectedObject!="") {
+        console.log("change")
+        createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
+    }
 }
