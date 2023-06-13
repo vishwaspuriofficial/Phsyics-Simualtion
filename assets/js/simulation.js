@@ -85,8 +85,9 @@ function createObject() {
     var box = Bodies.rectangle(400,200,document.getElementById("length").value,document.getElementById("width").value, {render: {
         fillStyle: colours.at(objects.length),
         strokeStyle: 'white',
-        lineWidth: 3}, isStatic: true})
-    box.mass = document.getElementById("mass").value
+        lineWidth: 3}})
+    Matter.Body.setMass(box, parseFloat(document.getElementById("mass").value))
+    Matter.Body.setStatic(box, true)
     objects.push(box)
     if (objects.length==6) {
         document.getElementById("addObject").disabled = true;
