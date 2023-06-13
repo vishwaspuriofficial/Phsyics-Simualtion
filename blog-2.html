@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Physics Simulation</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Gp
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header style="background:rgba(0, 0, 0, 0.8);"  id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">SPH4U0<span>.</span></a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>  
+          <li><a class="nav-link scrollto active" href="index.html#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li class="dropdown"><a href="index.html#blogs"><span>Blogs</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="blog-1.html">Importance of Simulations</a></li>
+              <li><a href="blog-2.html">Centre of Mass and Gravity</a></li>
+              <li><a href="blog-3.html">Physics of Angular Effects</a></li>
+              <li><a href="blog-4.html">Process of Development</a></li>
+              <li><a href="blog-5.html">Resolving Errors</a></li>
+              <li><a href="blog-6.html">Future of Simulations</a></li>
+              <li><a href="sources.html">Bibliography</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="simulation.html" class="get-started-btn scrollto">Simulation</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Centre of Mass and Gravity</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Blogs</li>
+            <li>Centre of Mass and Gravity</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <h5>April 24th, 2023</h5>
+      <p>
+        Something that we obviously needed to do, was to look at the behavior of real-world objects and how it can be modelled by physics equations. While the equations we looked at in-class do reflect how actual objects move, they do not capture enough of the complexity involved in real-life. For instance, while we talked about concepts like angular velocity, we never really took a look at how the application of force on a specific point would cause the object to rotate like how a box leaning too far off the edge of a table would rotate and fall off. For that, we took a look at the articles from Chris Hecker for the modeling of rigid body dynamics. 
+      </p>
+      <br>
+      <p>
+        He starts off by covering the basic concepts, like the relationship between displacement, velocity, and acceleration as derivatives and integrations of each other in respect to time. He then goes and defines momentum as the summation of mass times velocity at every point, as well as centre of mass as the weighted average of the points of the object in respect to mass. There is also something called the centre of gravity, although it is commonly used interchangeably with centre of mass when the acceleration from gravity is uniform, as it is the weighted average of the forces instead of the mass. What he then derives, can be simplified as the fact that uniform acceleration acting on a body can be broken down to the application of force on a single point being its centre of mass, which is how we have been treating forces thus far in physics. One other property of the centre of mass, is that by dividing the object along that point, a uniform acceleration can be achieved by applying the same total force to both sides. The formulas he uses here are used in his next article which focuses on the rotational physics involved.
+      </p>
+      <br>
+      <div class="row">
+        <div class="col">
+          <img width="300px" height="75px" src="./assets/img/blogs/blog-2-1.png">
+        </div>
+        <div class="col">
+          <p>
+            Force is the change in linear momentum, which is (mass * acceleration).
+          </p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <img width="200px" height="75px" src="./assets/img/blogs/blog-2-2.png">
+        </div>
+        <div class="col">
+          <p>
+            The sum of all momentum (mass * velocity) gives you the total momentum.
+          </p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <img width="200px" height="100px" src="./assets/img/blogs/blog-2-3.png">
+        </div>
+        <div class="col">
+          <p>
+            Centre of mass acts as a weighted average of the points as each point is a percentage (point mass / total mass) of the object.
+          </p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <img width="300px" height="75px" src="./assets/img/blogs/blog-2-4.png">
+        </div>
+        <div class="col">
+          <p>
+            Relation between momentum and centre of mass.
+          </p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <img width="300px" height="75px" src="./assets/img/blogs/blog-2-5.png">
+        </div>
+        <div class="col">
+          <p>
+            Derivation of the relation between centre of mass and force at point.
+          </p>
+        </div>
+      </div>
+
+      <br>
+      <br>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>SPH4U0<span>.</span></h3>
+              <p style="padding-right: 80px;">We think that working on this project will allow us to use our imaginations, be creative, and learn more about a subject that interests us. Ultimately, we are excited to follow this project's progress and see what we can learn from it.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Our Team</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="simulation.html">Simulation</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Our Resources</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-1.html">Importance of Simulations</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-2.html">Centre of Mass and Gravity</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-3.html">Physics of Angular Effects</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>‎ </h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-4.html">Process of Development</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-5.html">Resolving Errors</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-6.html">Future of Simulations</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h4>Address</h4>
+            <p>
+              3225 Erindale Station Rd,<br>
+              Mississauga, ON<br>
+              L5C 1Y5 Canada<br><br>
+              <strong>Email:</strong>
+              764252@pdsb.net<br>
+              <strong style="color: #151515">Email:</strong>
+              688240@pdsb.net<br>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>2023 Physics Simulations</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
