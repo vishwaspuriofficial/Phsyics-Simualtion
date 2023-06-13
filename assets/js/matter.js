@@ -4015,6 +4015,13 @@ var Common = __webpack_require__(0);
             body.sleepCounter = 0;
 
             if (wasSleeping) {
+                body.positionX = []
+                body.positionY = []
+                body.velocityX = []
+                body.velocityY = []
+                body.accelerationX = []
+                body.accelerationY = []
+                body.time = [0]
                 Events.trigger(body, 'sleepEnd');
             }
         }

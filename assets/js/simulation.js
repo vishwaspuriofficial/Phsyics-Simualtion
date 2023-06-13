@@ -13,7 +13,9 @@ var Engine = Matter.Engine,
     Composite = Matter.Composite;
 
 // create an engine
-var engine = Engine.create();
+var engine = Engine.create({
+    enableSleeping: true
+});
 
 // create a renderer
 var render = Render.create({
@@ -72,7 +74,10 @@ colours = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"]
 
 function startSimulation() {
     objects.forEach(function(object) {
-        Matter.Body.setStatic(object, false)
+        if (object.isStatic){
+            Matter.Sleeping.set(object, false)
+            Matter.Body.setStatic(object, false)
+        }
         // simulationData()
     });
 }
@@ -88,6 +93,11 @@ function createObject() {
         lineWidth: 3}})
     Matter.Body.setMass(box, parseFloat(document.getElementById("mass").value))
     Matter.Body.setStatic(box, true)
+    Matter.Events.on(box, "sleepStart", function(e){
+        if (selectedObject == box.render.fillStyle) {
+        console.log("change")
+        createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
+    }})
     objects.push(box)
     if (objects.length==6) {
         document.getElementById("addObject").disabled = true;
@@ -108,8 +118,6 @@ function dynamicOptions() {
     });
  document.getElementById("dynamicObjects").innerHTML = options;
 }
-
-
 
 // function simulationData() {
 //     objects.forEach(function(object){
@@ -186,9 +194,9 @@ function drawGraph(object,data,gt) {
     new Chart(gt, {
         type: "line",
         data: {
-            labels: object.time.slice(-100),
+            labels: object.time,
             datasets: [{
-                data: data.slice(-100)
+                data: data
             }]
         },
         options: {}
@@ -200,12 +208,4 @@ function selectObject(obj) {
     selectedObject = obj
     document.getElementById("obj").innerHTML = "Choose Object: " + obj;
     createGraph(obj, document.getElementById("graph").innerText.slice(-3))
-}
-
-//Update Graphs
-canvas.onmouseup = function(e){
-    if (selectedObject!="") {
-        console.log("change")
-        createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
-    }
 }
