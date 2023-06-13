@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Physics Simulation</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Gp
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header style="background:rgba(0, 0, 0, 0.8);"  id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">SPH4U0<span>.</span></a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>  
+          <li><a class="nav-link scrollto active" href="index.html#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li class="dropdown"><a href="index.html#blogs"><span>Blogs</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="blog-1.html">Importance of Simulations</a></li>
+              <li><a href="blog-2.html">Centre of Mass and Gravity</a></li>
+              <li><a href="blog-3.html">Physics of Angular Effects</a></li>
+              <li><a href="blog-4.html">Process of Development</a></li>
+              <li><a href="blog-5.html">Resolving Errors</a></li>
+              <li><a href="blog-6.html">Future of Simulations</a></li>
+              <li><a href="sources.html">Bibliography</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="simulation.html" class="get-started-btn scrollto">Simulation</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Bibliography</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Blogs</li>
+            <li>Bibliography</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <p>
+          Hecker, C. (1996). Physics, Part 2: Angular Effects. <br>
+          <a href="https://www.chrishecker.com/Rigid_Body_Dynamics">https://www.chrishecker.com/Rigid_Body_Dynamics</a>
+        </p>
+        <p>
+          An article by Chris Hecker on angular physics in games. The article covers the important equations for doing linear rigid body dynamics, such as position, velocity, acceleration, force, center of mass, and total linear momentum for a rigid body. It then introduces orientation as another kinematic quantity that needs to be added to support angular effects. For instance, when the center of mass of an object is not supported by the platform its on, the unequal distribution of the force would cause it to rotate instead of only falling or staying, which would need modeled as an angular effect.
+        </p><br>
+        
+        <p>
+          Nasrollahi, S. (2021, June 25). Real-time physics simulations and machine learning. Medium. <br>
+          <a href="https://seyedhn.medium.com/real-time-physics-simulations-and-machine-learning-90e6e1ef1b3d">https://seyedhn.medium.com/real-time-physics-simulations-and-machine-learning-90e6e1ef1b3d</a>
+        <p>
+          An article that describes the various ways that real-life is simulated, with there being a trade-off between accuracy and speed. For instance, rigid-body dynamics are useful for non-deforming objects, it’s not suitable for hair and clothes that don’t fit the criteria. For those, you would use soft-body dynamics models such as Spring-Mass, PBD, FEM and MPM to differing degrees of accuracy and speed. While there was little room for improvement in physics simulations, the article describes the use of machine learning, which has been found to potentially increase speeds by 2 billion times. It accomplishes this by using trained neural network model to predict the the behavior, and emulate an actual physics solver.
+        </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>SPH4U0<span>.</span></h3>
+              <p style="padding-right: 80px;">We think that working on this project will allow us to use our imaginations, be creative, and learn more about a subject that interests us. Ultimately, we are excited to follow this project's progress and see what we can learn from it.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Our Team</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="simulation.html">Simulation</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Our Resources</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-1.html">Importance of Simulations</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-2.html">Centre of Mass and Gravity</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-3.html">Physics of Angular Effects</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>‎ </h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-4.html">Process of Development</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-5.html">Resolving Errors</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="blog-6.html">Future of Simulations</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h4>Address</h4>
+            <p>
+              3225 Erindale Station Rd,<br>
+              Mississauga, ON<br>
+              L5C 1Y5 Canada<br><br>
+              <strong>Email:</strong>
+              764252@pdsb.net<br>
+              <strong style="color: #151515">Email:</strong>
+              688240@pdsb.net<br>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>2023 Physics Simulations</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
