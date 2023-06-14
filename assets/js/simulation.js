@@ -94,7 +94,6 @@ function createObject() {
     Matter.Body.setStatic(box, true)
     Matter.Events.on(box, "sleepStart", function(e){
         if (selectedObject == box.render.fillStyle) {
-        console.log("change")
         createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
     }})
     objects.push(box)
@@ -108,8 +107,6 @@ function createObject() {
 
 Matter.Events.on(mouseConstraint, "startdrag", function(e){
     box = e.body;
-    console.log(box.render.fillStyle, box)
-
     if (box.isStatic){
         box.isSensor = true;
         Matter.Body.setStatic(box, false)
@@ -174,32 +171,40 @@ function createGraph(selectedObject, graph) {
 }
 
 function drawGraph(object,data,gt,title) {
+    endState = Math.round(data.at(-1))
+    xArray = object.time
+    yArray = data
+    while (endState == Math.round(data.at(-1))){
+        xArray.pop()
+        yArray.pop()
+    }
     new Chart(gt, {
         type: "line",
         data: {
-            labels: object.time,
+            labels: xArray,
             datasets: [{
-                data: data,
+                data: yArray,
                 label: "Movement of Object "+ selectedObject,
             }]
         },
         options: {
             scales: {
-              xAxes: [{
+                xAxes: [{
                 scaleLabel: {
-                  display: true,
-                  labelString: 'Time (ms)'
+                    display: true,
+                    labelString: 'Time (ms)'
                 }
-              }],
-              yAxes: [{
+                }],
+                yAxes: [{
                 scaleLabel: {
-                  display: true,
-                  labelString: title
+                    display: true,
+                    labelString: title
                 }
-              }]
+                }]
             }     
-          }
-      });
+        }
+    });
+
 }
 
 selectedObject = ""
