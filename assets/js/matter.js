@@ -4022,6 +4022,7 @@ var Common = __webpack_require__(0);
                 body.accelerationX = []
                 body.accelerationY = []
                 body.time = [0]
+
                 Events.trigger(body, 'sleepEnd');
             }
         }
@@ -9323,11 +9324,11 @@ var Mouse = __webpack_require__(14);
                 if (!part.render.visible)
                     continue;
 
-                if (options.showSleeping && body.isSleeping) {
-                    c.globalAlpha = 0.5 * part.render.opacity;
-                } else if (part.render.opacity !== 1) {
-                    c.globalAlpha = part.render.opacity;
-                }
+                // if (options.showSleeping && body.isSleeping) {
+                //     c.globalAlpha = 0.5 * part.render.opacity;
+                // } else if (part.render.opacity !== 1) {
+                //     c.globalAlpha = part.render.opacity;
+                // }
 
                 if (part.render.sprite && part.render.sprite.texture && !options.wireframes) {
                     // part sprite

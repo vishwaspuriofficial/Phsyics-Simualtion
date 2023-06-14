@@ -94,7 +94,6 @@ function createObject() {
     Matter.Body.setStatic(box, true)
     Matter.Events.on(box, "sleepStart", function(e){
         if (selectedObject == box.render.fillStyle) {
-        console.log("change")
         createGraph(selectedObject, document.getElementById("graph").innerText.slice(-3))
     }})
     objects.push(box)
@@ -105,6 +104,19 @@ function createObject() {
     Composite.add(engine.world, [objects.at(-1)]);
     dynamicOptions()
 }
+
+Matter.Events.on(mouseConstraint, "startdrag", function(e){
+    box = e.body;
+    if (box.isStatic){
+        box.isSensor = true;
+        Matter.Body.setStatic(box, false)
+        Matter.Events.on(mouseConstraint, "mouseup", function(e){
+            box.isSensor = false;
+            Matter.Body.setStatic(box, true)
+            Matter.Events.off(mouseConstraint, "mouseup")
+        }, )
+    }
+})
 
 function dynamicOptions() {
     var options = "";
@@ -118,37 +130,6 @@ function dynamicOptions() {
  document.getElementById("dynamicObjects").innerHTML = options;
 }
 
-// function simulationData() {
-//     objects.forEach(function(object){
-//         console.log(object)
-//         Object.assign(object,{positionX: [object.position.x]});
-//         Object.assign(object,{positionY: [object.position.y]});
-//         Object.assign(object,{velocityX: [object.velocity.x]});
-//         Object.assign(object,{velocityY: [object.velocity.x]});
-//         Object.assign(object,{accelerationX: []});
-//         Object.assign(object,{accelerationY: []});
-//         Object.assign(object,{time: [0]});
-
-//         Math.round((object.positionX.at(-1)) * 100) / 100
-
-//         var timer = setInterval(() => {
-//             console.log(object.positionY.at(-1), object.position.y);
-//             if (((Math.round((object.positionX.at(-1)) * 100) / 100) == (Math.round((object.position.x) * 100) / 100)) && ((Math.round((object.positionY.at(-1)) * 100) / 100) == (Math.round((object.position.y) * 100) / 100))) {
-//                 vals.push(object)
-//                 clearInterval(timer); 
-//                 console.log(vals);
-//             }
-//             object.positionX.push(object.position.x);
-//             object.positionY.push(object.position.y);
-//             object.velocityX.push(object.velocity.x);
-//             object.velocityY.push(object.velocity.y);
-//             object.accelerationX.push((object.velocityX.at(-1)-object.velocityX.at(-2))/(fps/1000));
-//             object.accelerationY.push((object.velocityY.at(-1)-object.velocityY.at(-2))/(fps/1000));
-//             object.time.push(Math.round((object.time.at(-1)+0.1) * 10) / 10);
-//         }, fps)
-//     });
-// }
-
 function showObjects(graph) {
     document.getElementById("graph").innerHTML = "Choose Graph: " + graph;
     o = document.getElementById("obj");
@@ -161,13 +142,6 @@ function showObjects(graph) {
 }
 
 function createGraph(selectedObject, graph) {
-    document.getElementById("xpt").hidden = true;
-    document.getElementById("ypt").hidden = true;
-    document.getElementById("xvt").hidden = true;
-    document.getElementById("yvt").hidden = true;
-    document.getElementById("xat").hidden = true;
-    document.getElementById("yat").hidden = true;
-    document.getElementById(graph).hidden = false;
     object = objects.at(colours.indexOf(selectedObject));
     if (graph=="xpt") {
         drawGraph(object, object.positionX, "xptGraph",'X-Position (cm)')
@@ -189,33 +163,45 @@ function createGraph(selectedObject, graph) {
     }
 }
 
+var graphChart = new Chart(document.getElementById("graphCanvas"), {});
+
 function drawGraph(object,data,gt,title) {
-    new Chart(gt, {
+    document.getElementById("graphTitle").textContent = title
+    endState = Math.round(data.at(-1))
+    xArray = object.time
+    yArray = data
+    while (endState == Math.round(data.at(-1))){
+        xArray.pop()
+        yArray.pop()
+    }
+    
+    graphChart.destroy()
+    graphChart = new Chart(document.getElementById("graphCanvas"), {
         type: "line",
         data: {
-            labels: object.time,
+            labels: xArray,
             datasets: [{
-                data: data,
+                data: yArray,
                 label: "Movement of Object "+ selectedObject,
             }]
         },
         options: {
             scales: {
-              xAxes: [{
+                xAxes: [{
                 scaleLabel: {
-                  display: true,
-                  labelString: 'Time (ms)'
+                    display: true,
+                    labelString: 'Time (ms)'
                 }
-              }],
-              yAxes: [{
+                }],
+                yAxes: [{
                 scaleLabel: {
-                  display: true,
-                  labelString: title
+                    display: true,
+                    labelString: title
                 }
-              }]
-            }     
-          }
-      });
+                }]
+            }
+        },
+    });
 }
 
 selectedObject = ""
@@ -224,3 +210,4 @@ function selectObject(obj) {
     document.getElementById("obj").innerHTML = "Choose Object: " + obj;
     createGraph(obj, document.getElementById("graph").innerText.slice(-3))
 }
+
