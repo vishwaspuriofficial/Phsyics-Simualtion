@@ -1647,7 +1647,7 @@ var Axes = __webpack_require__(11);
             restitution: 0,
             friction: 0.1,
             frictionStatic: 0.5,
-            frictionAir: 0.01,
+            frictionAir: 0,
             collisionFilter: {
                 category: 0x0001,
                 mask: 0xFFFFFFFF,
@@ -6345,7 +6345,7 @@ var Body = __webpack_require__(4);
             plugin: {},
             gravity: {
                 x: 0,
-                y: 9.8,
+                y: 9.81,
                 scale: 0.0001
             },
             timing: {
