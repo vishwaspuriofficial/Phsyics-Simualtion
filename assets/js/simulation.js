@@ -142,13 +142,6 @@ function showObjects(graph) {
 }
 
 function createGraph(selectedObject, graph) {
-    document.getElementById("xpt").hidden = true;
-    document.getElementById("ypt").hidden = true;
-    document.getElementById("xvt").hidden = true;
-    document.getElementById("yvt").hidden = true;
-    document.getElementById("xat").hidden = true;
-    document.getElementById("yat").hidden = true;
-    document.getElementById(graph).hidden = false;
     object = objects.at(colours.indexOf(selectedObject));
     if (graph=="xpt") {
         drawGraph(object, object.positionX, "xptGraph",'X-Position (cm)')
@@ -170,7 +163,10 @@ function createGraph(selectedObject, graph) {
     }
 }
 
+var graphChart = new Chart(document.getElementById("graphCanvas"), {});
+
 function drawGraph(object,data,gt,title) {
+    document.getElementById("graphTitle").textContent = title
     endState = Math.round(data.at(-1))
     xArray = object.time
     yArray = data
@@ -178,7 +174,9 @@ function drawGraph(object,data,gt,title) {
         xArray.pop()
         yArray.pop()
     }
-    new Chart(gt, {
+    
+    graphChart.destroy()
+    graphChart = new Chart(document.getElementById("graphCanvas"), {
         type: "line",
         data: {
             labels: xArray,
@@ -201,10 +199,9 @@ function drawGraph(object,data,gt,title) {
                     labelString: title
                 }
                 }]
-            }     
-        }
+            }
+        },
     });
-
 }
 
 selectedObject = ""
